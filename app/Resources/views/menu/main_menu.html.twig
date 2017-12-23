@@ -1,0 +1,19 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% import 'knp_menu.html.twig' as knp_menu %}
+
+{% block list %}
+    {% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
+        <div{{ knp_menu.attributes(listAttributes) }} class="list-group">
+            {{ block('children') }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block item %}
+    {% if item.displayed %}
+        {{ block('linkElement') }}
+    {% endif %}
+{% endblock %}
+
+{% block linkElement %}<a class="list-group-item" href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}

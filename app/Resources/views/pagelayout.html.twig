@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="eZ Platform" />
 
         {% if content is defined and title is not defined %}
             {% set title = ez_content_name(content) %}
@@ -13,15 +14,68 @@
             <title>{{ title|default('Home')|trans }} - Adam Wójs</title>
         {% endblock %}
 
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+            {% stylesheets 'assets/css/style.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
     </head>
     <body>
-        {% block header %}
-            {{ knp_menu_render('main') }}
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand">
+                        Adam Wójs
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <div id="container">
+            <div id="sidebar-outer">
+                <div id="sidebar">
+                    {% block sidebar %}
+                        {% block header %}
+                        <h1 class="page-header text-center">
+                            <a href="/">Adam Wójs </a>
+                        </h1>
+                        {% endblock %}
+
+                        {% block main_menu %}
+                            {{ knp_menu_render('main', {'template': '::menu/main_menu.html.twig'}) }}
+                        {% endblock %}
+
+                        {% block social_media %}
+                        <a href="https://github.com/adamwojs" target="_blank">
+                            <img src="{{ asset('/assets/img/github.png') }}" alt="GitHub" width="24"/>
+                            GitHub
+                        </a>
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+            </div>
+
+            <div class="content-outer">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+        {% block javascripts %}
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+            <!-- Application Main -->
+            {% javascripts 'assets/js/*' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
-
-        {% block content %}{% endblock %}
-
-        {% block javascripts %}{% endblock %}
     </body>
 </html>
