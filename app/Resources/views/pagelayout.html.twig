@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% if content is defined and title is not defined %}
+            {% set title = ez_content_name(content) %}
+        {% endif %}
+
+        {% block page_title %}
+            <title>{{ title|default('Home')|trans }} - Adam Wójs</title>
+        {% endblock %}
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block header %}
+            {{ knp_menu_render('main') }}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

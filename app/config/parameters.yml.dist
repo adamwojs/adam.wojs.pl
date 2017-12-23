@@ -11,3 +11,8 @@ parameters:
     env(DATABASE_NAME): ezplatform
     env(DATABASE_USER): root
     env(DATABASE_PASSWORD):
+
+    app.blog.location_id: 55
+    app.blog.page_limit: 10
+    app.portfolio.location_id: 54
+    app.portfolio.page_limit: 10

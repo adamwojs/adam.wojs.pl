@@ -7,7 +7,7 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
-use eZ\Publish\Core\Repository\SearchService;
+use eZ\Publish\API\Repository\SearchService;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -40,9 +40,9 @@ class MainMenuBuilder
     /**
      * MainMenuBuilder constructor.
      *
-     * @param FactoryInterface $factory
-     * @param LocationService $locationService
-     * @param SearchService $searchService
+     * @param \Knp\Menu\FactoryInterface $factory
+     * @param \eZ\Publish\API\Repository\LocationService $locationService
+     * @param \eZ\Publish\API\Repository\SearchService $searchService
      * @param int $rootLocationId
      */
     public function __construct(

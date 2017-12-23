@@ -1,0 +1,31 @@
+ezpublish:
+    system:
+        default:
+            pagelayout: '::pagelayout.html.twig'
+            content_view:
+                full:
+                    blog:
+                        controller: 'AppBundle\Controller\ListController:contentAction'
+                        params:
+                            page_limit: '%app.blog.page_limit%'
+                            query:
+                                query_type: 'LocationChildren'
+                                parameters:
+                                    parent_location_id: '%app.blog.location_id%'
+                                assign_results_to: 'posts'
+                        template: '::full/blog.html.twig'
+                        match:
+                            Id\Location: '%app.blog.location_id%'
+                    portfolio:
+                        controller: 'AppBundle\Controller\ListController:contentAction'
+                        params:
+                            page_limit: '%app.portfolio.page_limit%'
+                            query:
+                                query_type: 'LocationChildren'
+                                parameters:
+                                    parent_location_id: '%app.portfolio.location_id%'
+                                assign_results_to: 'projects'
+                        template: '::full/portfolio.html.twig'
+                        match:
+                            Id\Location: '%app.portfolio.location_id%'
+
