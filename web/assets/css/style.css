@@ -1,0 +1,249 @@
+body {
+    background: #eee url('/assets/img/pw_maze_white.png');
+    font-size: 16px;
+}
+
+figure {
+    margin-bottom: 10px;
+}
+
+figure img {
+    width: 100%;
+}
+
+figcaption {
+    font-size: 0.9em;
+    margin-top: -10px;
+    text-align: center;
+    width: 100%;
+}
+
+#container {
+    overflow: hidden;
+    width: 100%;
+}
+
+#sidebar-outer {
+    height: 100%;
+    left: 0;
+    padding: 0;
+    position: fixed;
+    width: 25%;
+}
+
+#sidebar {
+    padding: 15px;
+}
+
+/* Menu gÃ³rne */
+.navbar-toggle {
+    display: block;
+    float: left;
+    margin-right: -15px;
+    border: none;
+}
+
+.navbar-toggle:hover, .navbar-toggle:focus {
+    background: none !important;
+}
+
+.content-outer {
+    float: right;
+    width: 75%;
+}
+
+.content {
+    border-left: 1px solid #ddd;
+    background: #fff;
+    padding: 15px 30px;
+}
+
+.content .page-header {
+    border: none;
+    margin-top: 0;
+}
+
+.content select.filters {
+    display: none;
+}
+
+.content nav.filters { 
+    display: block;
+}    
+
+.jumbotron {
+    background: #fdffdd url('/assets/img/grid-2.png');
+    border: 1px solid #ddd    
+}
+
+.project {
+    border: 1px solid #ddd;
+    padding: 20px 20px 10px;
+    margin-top: -1px
+}
+
+.project .thumbnail {
+    border-bottom: 0;
+    position: relative;
+    width: 100%;
+}
+
+.project .thumbnail:after {
+    bottom: 0;
+    background: url('/assets/img/grad.png') repeat-x;
+    content: " ";
+    display: block;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+
+.project-header h3 {
+    margin: 0 0 10px;
+}
+
+.navbar {
+    display: none;
+    margin-bottom: 0;
+    margin-left: -15px;
+}
+
+/* OÅ› czasu */
+.timetime-header {
+    border-left: 3px solid #ddd;
+    margin: 0 3px;
+    padding: 0 10px 10px;
+}
+
+.timeline .dl-horizontal {
+    border-left: 3px solid #ddd;
+    margin-bottom: 0;
+    margin-left: 3px;
+    padding-bottom: 10px;
+}
+
+.timeline .dl-horizontal dt {
+    border-bottom: 1px solid #ddd;
+    color: #666;
+    float: left !important;
+    font-size: 0.95em;
+    font-weight: normal;
+    padding: 3px 5px;
+    text-align: right !important;
+    width: 140px;
+}
+
+.timeline .dl-horizontal dd {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    margin-left: 140px;
+}
+
+.timeline img {
+    vertical-align: baseline
+}
+
+/* Lista umiejÄ™tnoÅ›ci */
+.skills {
+    padding: 0;
+    margin: 0;
+}
+
+.skills li {
+    list-style-type: none;
+}
+
+.skill {
+    position: relative;
+    padding-left: 20px;
+    display: block;
+}
+
+.skill .progress {
+    height: 25px;
+}
+
+.skill .progress-bar {
+    line-height: 25px;
+    text-align: left;
+    text-indent: 20px;
+}
+
+.skill .expand {
+    font-size: 15px;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 3px;
+}
+
+.skill .label {
+    position: relative;
+    top: -6px;
+}
+
+@media all and (max-width: 800px) {
+    body { width: 100%; }
+
+    .navbar { display: block; }
+    .project { padding: 10px; }
+    .project:first-of-type {
+        border-top: 1px solid #ddd;
+    }
+
+    #sidebar-outer {
+        left: -100%;
+        position: absolute;
+        height: 100%;
+        width: 50%;
+    }
+
+    #sidebar-outer .page-header { display: none }
+
+    .content-outer {
+        float: left;
+        width: 100%;
+    }
+
+    .content select.filters {
+        display: block;
+        margin-bottom: 20px
+    }
+    
+    .content nav.filters { display: none }    
+}
+
+@media all and (max-width: 480px) {
+    
+    #sidebar-outer {
+        width: 75%;
+    }
+    
+    .content {
+        padding-left: 5px;
+        padding-right: 5px
+    }    
+    
+    .timetime-header {
+        padding-left: 5px;
+    }
+    
+    .timeline .dl-horizontal dt {
+        float: none !important;
+        display: block;
+        width: 100%;
+        text-align: left !important;
+    }
+    
+    .timeline .dl-horizontal dd {
+        float: none !important;
+        display: block;
+        margin-left: 0;
+        margin-top: 3px;
+        border: none;
+        margin-bottom: 10px;
+    }
+}
