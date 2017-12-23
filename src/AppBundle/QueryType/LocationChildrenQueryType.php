@@ -23,6 +23,10 @@ class LocationChildrenQueryType implements QueryType
             new SortClause\DatePublished(Query::SORT_DESC)
         ];
 
+        if (isset($parameters['limit'])) {
+            $query->limit = $parameters['limit'];
+        }
+
         return $query;
     }
 
@@ -31,7 +35,7 @@ class LocationChildrenQueryType implements QueryType
      */
     public function getSupportedParameters()
     {
-        return ['parent_location_id'];
+        return ['parent_location_id', 'limit'];
     }
 
     /**

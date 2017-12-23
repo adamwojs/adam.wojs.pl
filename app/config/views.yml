@@ -9,23 +9,46 @@ ezpublish:
                         params:
                             page_limit: '%app.blog.page_limit%'
                             query:
-                                query_type: 'LocationChildren'
+                                query_type: LocationChildren
                                 parameters:
                                     parent_location_id: '%app.blog.location_id%'
-                                assign_results_to: 'posts'
+                                assign_results_to: posts
                         template: '::full/blog.html.twig'
                         match:
                             Id\Location: '%app.blog.location_id%'
+                    homepage:
+                        template: '::full/homepage.html.twig'
+                        params:
+                            portfolio_location_id: '%app.portfolio.location_id%'
+                        match:
+                            Identifier\ContentType: [homepage]
                     portfolio:
                         controller: 'AppBundle\Controller\ListController:contentAction'
                         params:
                             page_limit: '%app.portfolio.page_limit%'
                             query:
-                                query_type: 'LocationChildren'
+                                query_type: LocationChildren
                                 parameters:
                                     parent_location_id: '%app.portfolio.location_id%'
-                                assign_results_to: 'projects'
+                                assign_results_to: projects
                         template: '::full/portfolio.html.twig'
                         match:
                             Id\Location: '%app.portfolio.location_id%'
-
+                home:
+                    project:
+                        template: '::home/project.html.twig'
+                        match:
+                            Identifier\ContentType: [project]
+                    portfolio:
+                        controller: ez_query:ContentQueryAction
+                        template: '::parts/content_list.html.twig'
+                        params:
+                            view_type: home
+                            query:
+                                query_type: LocationChildren
+                                parameters:
+                                    parent_location_id: '%app.portfolio.location_id%'
+                                    limit: 1
+                                assign_results_to: content_items
+                        match:
+                            Id\Location: '%app.portfolio.location_id%'
