@@ -13,3 +13,11 @@ services:
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
         public: false
+
+    AppBundle\Menu\MainMenuBuilder:
+        public: true
+        arguments:
+            $rootLocationId: '$content.tree_root.location_id$'
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main  }
+
