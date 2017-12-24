@@ -82,6 +82,12 @@ figcaption {
     margin-top: -1px
 }
 
+#home-page .project {
+    border: none;
+    padding: 0;
+    margin-top: 0;
+}
+
 .project .thumbnail {
     border-bottom: 0;
     position: relative;

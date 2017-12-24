@@ -1,1 +1,19 @@
-<h3>{{ ez_render_field(content, 'title') }}</h3>
+<article class="project" data-tags="app">
+    <header class="project-header">
+        {% set url = path('ez_urlalias', {
+            'locationId': content.contentInfo.mainLocationId
+        }) %}
+
+        <h3><a href="{{ url }}">{{ ez_content_name(content) }}</a></h3>
+    </header>
+
+    {% if not ez_is_field_empty(content, 'introduction') %}
+        {{ ez_render_field(content, 'introduction') }}
+    {% endif %}
+
+    {% if not ez_is_field_empty(content, 'main_image') %}
+        <div class="thumbnail">
+            {{ ez_render_field(content, 'main_image', { parameters: { 'alias': 'original' } }) }}
+        </div>
+    {% endif %}
+</article>
