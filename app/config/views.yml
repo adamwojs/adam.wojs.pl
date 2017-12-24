@@ -22,6 +22,10 @@ ezpublish:
                             portfolio_location_id: '%app.portfolio.location_id%'
                         match:
                             Identifier\ContentType: [homepage]
+                    project:
+                        template: '::full/project.html.twig'
+                        match:
+                            Identifier\ContentType: [project]
                     portfolio:
                         controller: 'AppBundle\Controller\ListController:contentAction'
                         params:

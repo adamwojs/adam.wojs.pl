@@ -1,0 +1,33 @@
+{% extends '::pagelayout.html.twig' %}
+
+{% block ezkeyword_field %}
+    {% spaceless %}
+        {% if field.value.values|length() > 0 %}
+            <ul class="list-inline">
+                {% for keyword in field.value.values %}
+                    <li class="list-inline-item"><span class="label label-default">{{ keyword }}</span></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block content %}
+<div id="project-page" class="content">
+    <h1 class="page-header">
+        {{ ez_content_name(content) }}
+    </h1>
+
+    {% if not ez_is_field_empty(content, 'introduction') %}
+        {{ ez_render_field(content, 'introduction') }}
+    {% endif %}
+
+    {% if not ez_is_field_empty(content, 'description') %}
+        {{ ez_render_field(content, 'description') }}
+    {% endif %}
+
+    {% if not ez_is_field_empty(content, 'technologies') %}
+        Technologie: {{ ez_render_field(content, 'technologies',  { "template": _self } ) }}
+    {% endif %}
+</div>
+{% endblock %}
