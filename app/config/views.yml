@@ -16,6 +16,11 @@ ezpublish:
                         template: '::full/blog.html.twig'
                         match:
                             Id\Location: '%app.blog.location_id%'
+                    blog_post:
+                        template: '::full/blog_post.html.twig'
+                        match:
+                            Id\ParentLocation: '%app.blog.location_id%'
+                            Identifier\ContentType: [article]
                     homepage:
                         template: '::full/homepage.html.twig'
                         params:
@@ -61,3 +66,13 @@ ezpublish:
                         template: '::line/project.html.twig'
                         match:
                             Identifier\ContentType: [project]
+                    blog_post:
+                        template: '::line/blog_post.html.twig'
+                        match:
+                            Id\ParentLocation: '%app.blog.location_id%'
+                            Identifier\ContentType: [article]
+                embed:
+                    image:
+                        template: '::embed/image.html.twig'
+                        match:
+                            Identifier\ContentType: [image]

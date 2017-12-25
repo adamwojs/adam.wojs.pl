@@ -48,6 +48,11 @@ ezpublish:
             # HttpCache purge server(s) setting, eg Varnish, for when ezpublish.http_cache.purge_type is set to 'http'.
             http_cache:
                 purge_servers: ['%purge_server%']
+            image_variations:
+                blog_post:
+                    reference: original
+                    filters:
+                        - { name: geometry/scaleexact, params: [1024, 300] }
 
         # WARNING: Do not remove or rename this group.
         admin_group:
