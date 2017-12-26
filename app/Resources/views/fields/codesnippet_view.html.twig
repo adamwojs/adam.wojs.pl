@@ -1,0 +1,16 @@
+{% extends "EzPublishCoreBundle::content_fields.html.twig" %}
+
+{% block codesnippet_field %}
+    {% spaceless %}
+        {% set attr = {
+            'data-start': (field.value.firstLine|default(1)),
+            'data-line': field.value.highlightedLines
+        } %}
+
+        {% if field.value.language %}
+            <pre {{ block('field_attributes') }}><code class="language-{{ field.value.language }} line-numbers">{{ field.value.contents }}</code></pre>
+        {% else %}
+            <pre>field.value.contents</pre>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

@@ -53,6 +53,8 @@ ezpublish:
                     reference: original
                     filters:
                         - { name: geometry/scaleexact, params: [1024, 300] }
+            field_templates:
+                - { template: ':fields:codesnippet_view.html.twig' }
 
         # WARNING: Do not remove or rename this group.
         admin_group:
@@ -63,3 +65,5 @@ ezpublish:
                 default_ttl: '%httpcache_default_ttl%'
             http_cache:
                 purge_servers: ['%purge_server%']
+            field_templates:
+                - { template: ':fields:codesnippet_preview.html.twig' }

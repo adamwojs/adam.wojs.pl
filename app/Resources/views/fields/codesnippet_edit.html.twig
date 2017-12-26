@@ -1,0 +1,15 @@
+{% block ezplatform_fieldtype_codesnippet_widget %}
+    {{- form_row(form.contents, { attr: { rows: 20 }}) -}}
+
+    <div class="form-row">
+        <div class="col">
+            {{- form_row(form.language) -}}
+        </div>
+        <div class="col">
+            {{- form_row(form.highlightedLines) -}}
+        </div>
+        <div class="col">
+            {{- form_row(form.firstLine) -}}
+        </div>
+    </div>
+{% endblock %}

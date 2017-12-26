@@ -35,7 +35,7 @@ figcaption {
     padding: 15px;
 }
 
-/* Menu gÃ³rne */
+/* Menu główne */
 .navbar-toggle {
     display: block;
     float: left;
@@ -191,6 +191,10 @@ figcaption {
     top: -6px;
 }
 
+.blog-post {
+    width: 847px;
+}
+
 @media all and (max-width: 800px) {
     body { width: 100%; }
 
@@ -252,4 +256,9 @@ figcaption {
         border: none;
         margin-bottom: 10px;
     }
+}
+
+.code-snippet > pre {
+    margin: 0;
+    border: none;
 }

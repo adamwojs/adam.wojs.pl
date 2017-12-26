@@ -72,7 +72,8 @@ ezpublish:
                             Id\ParentLocation: '%app.blog.location_id%'
                             Identifier\ContentType: [article]
                 embed:
-                    image:
-                        template: '::embed/image.html.twig'
+                    code_snippet:
+                        template: '::embed/codesnippet.html.twig'
                         match:
-                            Identifier\ContentType: [image]
+                            Identifier\ContentType: [code_snippet]
+

@@ -16,7 +16,7 @@
 
         {% block stylesheets %}
             <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
-            {% stylesheets 'assets/css/style.css' filter='cssrewrite' %}
+            {% stylesheets 'assets/css/*' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}

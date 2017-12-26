@@ -1,0 +1,7 @@
+{% extends "EzPublishCoreBundle::content_fields.html.twig" %}
+
+{% block codesnippet_field %}
+    {% spaceless %}
+        <pre>{{ field.value.contents }}</pre>
+    {% endspaceless %}
+{% endblock %}

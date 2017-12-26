@@ -79,6 +79,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'fields/codesnippet_edit.html.twig'
 
 # Assetic Configuration
 assetic:

@@ -2,6 +2,137 @@
 # https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
+    codesnippet.available_languages:
+        'Markup': 'markup'
+        'CSS': 'css'
+        'C-like': 'clike'
+        'JavaScript': 'javascript'
+        'ABAP': 'abap'
+        'ActionScript': 'actionscript'
+        'Ada': 'ada'
+        'Apache Configuration': 'apacheconf'
+        'APL': 'apl'
+        'AppleScript': 'applescript'
+        'Arduino': 'arduino'
+        'AsciiDoc': 'asciidoc'
+        '6502 Assembly': 'asm6502'
+        'ASP.NET (C#)': 'aspnet'
+        'AutoHotkey': 'autohotkey'
+        'AutoIt': 'autoit'
+        'Bash': 'bash'
+        'BASIC': 'basic'
+        'Batch': 'batch'
+        'Bison': 'bison'
+        'Brainfuck': 'brainfuck'
+        'Bro': 'bro'
+        'C': 'c'
+        'C#': 'csharp'
+        'C++': 'cpp'
+        'CoffeeScript': 'coffeescript'
+        'Crystal': 'crystal'
+        'CSS Extras': 'css-extras'
+        'D': 'd'
+        'Dart': 'dart'
+        'Django/Jinja2': 'django'
+        'Diff': 'diff'
+        'Docker': 'docker'
+        'Eiffel': 'eiffel'
+        'Elixir': 'elixir'
+        'Erlang': 'erlang'
+        'F#': 'fsharp'
+        'Flow': 'flow'
+        'Fortran': 'fortran'
+        'Gherkin': 'gherkin'
+        'Git': 'git'
+        'GLSL': 'glsl'
+        'Go': 'go'
+        'GraphQL': 'graphql'
+        'Groovy': 'groovy'
+        'Haml': 'haml'
+        'Handlebars': 'handlebars'
+        'Haskell': 'haskell'
+        'Haxe': 'haxe'
+        'HTTP': 'http'
+        'IchigoJam': 'ichigojam'
+        'Icon': 'icon'
+        'Inform 7': 'inform7'
+        'Ini': 'ini'
+        'J': 'j'
+        'Java': 'java'
+        'Jolie': 'jolie'
+        'JSON': 'json'
+        'Julia': 'julia'
+        'Keyman': 'keyman'
+        'Kotlin': 'kotlin'
+        'LaTeX': 'latex'
+        'Less': 'less'
+        'LiveScript': 'livescript'
+        'LOLCODE': 'lolcode'
+        'Lua': 'lua'
+        'Makefile': 'makefile'
+        'Markdown': 'markdown'
+        'MATLAB': 'matlab'
+        'MEL': 'mel'
+        'Mizar': 'mizar'
+        'Monkey': 'monkey'
+        'N4JS': 'n4js'
+        'NASM': 'nasm'
+        'nginx': 'nginx'
+        'Nim': 'nim'
+        'Nix': 'nix'
+        'NSIS': 'nsis'
+        'Objective-C': 'objectivec'
+        'OCaml': 'ocaml'
+        'OpenCL': 'opencl'
+        'Oz': 'oz'
+        'PARI/GP': 'parigp'
+        'Parser': 'parser'
+        'Pascal': 'pascal'
+        'Perl': 'perl'
+        'PHP': 'php'
+        'PHP Extras': 'php-extras'
+        'PowerShell': 'powershell'
+        'Processing': 'processing'
+        'Prolog': 'prolog'
+        '.properties': 'properties'
+        'Protocol Buffers': 'protobuf'
+        'Pug': 'pug'
+        'Puppet': 'puppet'
+        'Pure': 'pure'
+        'Python': 'python'
+        'Q': 'q'
+        'Qore': 'qore'
+        'R': 'r'
+        'React JSX': 'jsx'
+        'Ren''py': 'renpy'
+        'Reason': 'reason'
+        'reST (reStructuredText)': 'rest'
+        'Rip': 'rip'
+        'Roboconf': 'roboconf'
+        'Ruby': 'ruby'
+        'Rust': 'rust'
+        'SAS': 'sas'
+        'Sass (Sass)': 'sass'
+        'Sass (Scss)': 'scss'
+        'Scala': 'scala'
+        'Scheme': 'scheme'
+        'Smalltalk': 'smalltalk'
+        'Smarty': 'smarty'
+        'SQL': 'sql'
+        'Stylus': 'stylus'
+        'Swift': 'swift'
+        'Tcl': 'tcl'
+        'Textile': 'textile'
+        'Twig': 'twig'
+        'TypeScript': 'typescript'
+        'VB.Net': 'vbnet'
+        'Verilog': 'verilog'
+        'VHDL': 'vhdl'
+        'vim': 'vim'
+        'Wiki markup': 'wiki'
+        'Xeora': 'xeora'
+        'Xojo (REALbasic)': 'xojo'
+        'YAML': 'yaml'
 
 services:
     # default configuration for services in *this* file
@@ -23,5 +154,27 @@ services:
         arguments:
             $rootLocationId: '$content.tree_root.location_id$'
         tags:
-            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main  }
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
 
+    AppBundle\FieldType\CodeSnippet\Type:
+        public: true
+        tags:
+            - { name: ezpublish.fieldType, alias: codesnippet }
+
+    AppBundle\FieldType\CodeSnippet\Converter:
+        public: true
+        tags:
+            - { name: ezpublish.storageEngine.legacy.converter, alias: codesnippet }
+
+    AppBundle\FieldType\CodeSnippet\Form\FormMapper:
+        public: true
+        tags:
+            - { name: ez.fieldFormMapper.definition, fieldType: codesnippet }
+            - { name: ez.fieldFormMapper.value, fieldType: codesnippet }
+
+    AppBundle\FieldType\CodeSnippet\Form\FormType:
+        public: true
+        arguments:
+            $availableLanguages: '%codesnippet.available_languages%'
+        tags:
+            - { name: form.type }
