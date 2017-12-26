@@ -16,4 +16,4 @@
     {% endif %}
 {% endblock %}
 
-{% block linkElement %}<a class="list-group-item" href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}
+{% block linkElement %}<a class="list-group-item {% if matcher.isCurrent(item) %}active{% endif %}" href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}

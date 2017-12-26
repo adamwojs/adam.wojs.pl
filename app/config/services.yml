@@ -178,3 +178,8 @@ services:
             $availableLanguages: '%codesnippet.available_languages%'
         tags:
             - { name: form.type }
+
+    AppBundle\Menu\Voter\LocationVoter:
+        arguments: [ '@request_stack' ]
+        tags:
+            - { name: knp_menu.voter }
