@@ -77,3 +77,10 @@ ezpublish:
                         match:
                             Identifier\ContentType: [code_snippet]
 
+        admin_group:
+            content_view:
+                embed:
+                    code_snippet:
+                        template: '::embed/codesnippet_preview.html.twig'
+                        match:
+                            Identifier\ContentType: [code_snippet]
