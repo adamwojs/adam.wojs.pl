@@ -6,6 +6,8 @@
 
         {{ knp_menu_render('blog_categories') }}
 
+        {{ render(controller('AppBundle:BlogSearch:form')) }}
+
         {% for hit in posts %}
             {% set post = hit.valueObject %}
 

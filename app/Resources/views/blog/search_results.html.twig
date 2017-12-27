@@ -1,0 +1,28 @@
+{% extends '::pagelayout.html.twig' %}
+
+{% block content %}
+<div id="search-results" class="content">
+    <h1>Wyniki wyszukiwania</h1>
+
+    {% include ':blog:search_form.html.twig' with { form: form } %}
+
+    {% if results is not empty %}
+        {% for hit in results %}
+            {% set post = hit.valueObject %}
+
+            {{ render(controller('ez_content:viewAction', {
+                'locationId': post.contentInfo.mainLocationId,
+                'viewType': 'line',
+            })) }}
+        {% endfor %}
+
+        {% if results.haveToPaginate() %}
+            {{ pagerfanta(posts) }}
+        {% endif %}
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            <p>Brak wyników.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

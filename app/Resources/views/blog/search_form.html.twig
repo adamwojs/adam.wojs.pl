@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+<div class="input-group">
+    {{ form_widget(form.query, { attr: {
+        'class': 'form-control',
+        'placeholder': 'Szukaj frazy...'
+    }}) }}
+
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Szukaj</button>
+  </span>
+</div>
+{{ form_end(form) }}

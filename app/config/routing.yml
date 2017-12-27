@@ -25,3 +25,8 @@ _ezplatformRepositoryFormsRoutes:
 
 fos.js_routing:
     resource: '@FOSJsRoutingBundle/Resources/config/routing/routing.xml'
+
+blog_search:
+    path: /Blog/Search
+    defaults:
+        _controller: AppBundle:BlogSearch:search
