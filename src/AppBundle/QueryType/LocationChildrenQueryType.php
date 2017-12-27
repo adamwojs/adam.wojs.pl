@@ -2,17 +2,19 @@
 
 namespace AppBundle\QueryType;
 
+use eZ\Publish\Core\QueryType\OptionsResolverBasedQueryType;
 use eZ\Publish\Core\QueryType\QueryType;
 use eZ\Publish\API\Repository\Values\Content\Query;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class LocationChildrenQueryType implements QueryType
+class LocationChildrenQueryType extends OptionsResolverBasedQueryType implements QueryType
 {
     /**
      * @inheritdoc
      */
-    public function getQuery(array $parameters = [])
+    public function doGetQuery(array $parameters)
     {
         $query = new Query();
         $query->filter = new Criterion\LogicalAnd([
@@ -33,9 +35,12 @@ class LocationChildrenQueryType implements QueryType
     /**
      * @inheritdoc
      */
-    public function getSupportedParameters()
+    protected function configureOptions(OptionsResolver $resolver)
     {
-        return ['parent_location_id', 'limit'];
+        $resolver->setDefined(['parent_location_id', 'limit']);
+        $resolver->setRequired(['parent_location_id']);
+        $resolver->setAllowedTypes('parent_location_id', 'int');
+        $resolver->setAllowedTypes('limit', 'int');
     }
 
     /**
