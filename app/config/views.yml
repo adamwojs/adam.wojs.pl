@@ -11,16 +11,18 @@ ezpublish:
                             query:
                                 query_type: LocationChildren
                                 parameters:
-                                    parent_location_id: '%app.blog.location_id%'
+                                    parent_location: "@=location.pathString"
+                                    content_type: article
                                 assign_results_to: posts
                         template: '::full/blog.html.twig'
                         match:
-                            Id\Location: '%app.blog.location_id%'
+                            Identifier\ContentType: [folder]
+                            \AppBundle\Matcher\AncestorLocation: '%app.blog.location_id%'
                     blog_post:
                         template: '::full/blog_post.html.twig'
                         match:
-                            Id\ParentLocation: '%app.blog.location_id%'
                             Identifier\ContentType: [article]
+                            \AppBundle\Matcher\AncestorLocation: '%app.blog.location_id%'
                     homepage:
                         template: '::full/homepage.html.twig'
                         params:
@@ -38,7 +40,7 @@ ezpublish:
                             query:
                                 query_type: LocationChildren
                                 parameters:
-                                    parent_location_id: '%app.portfolio.location_id%'
+                                    parent_location: '%app.portfolio.location_id%'
                                 assign_results_to: projects
                         template: '::full/portfolio.html.twig'
                         match:
@@ -56,7 +58,7 @@ ezpublish:
                             query:
                                 query_type: LocationChildren
                                 parameters:
-                                    parent_location_id: '%app.portfolio.location_id%'
+                                    parent_location: '%app.portfolio.location_id%'
                                     limit: 1
                                 assign_results_to: content_items
                         match:
@@ -69,8 +71,8 @@ ezpublish:
                     blog_post:
                         template: '::line/blog_post.html.twig'
                         match:
-                            Id\ParentLocation: '%app.blog.location_id%'
                             Identifier\ContentType: [article]
+                            \AppBundle\Matcher\AncestorLocation: '%app.blog.location_id%'
                 embed:
                     code_snippet:
                         template: '::embed/codesnippet.html.twig'

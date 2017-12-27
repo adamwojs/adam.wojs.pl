@@ -156,6 +156,13 @@ services:
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
 
+    AppBundle\Menu\BlogCategoriesMenuBuilder:
+        public: true
+        arguments:
+            $blogLocationId: '%app.blog.location_id%'
+        tags:
+            - { name: knp_menu.menu_builder, method: createCategoriesMenu, alias: blog_categories }
+
     AppBundle\FieldType\CodeSnippet\Type:
         public: true
         tags:
