@@ -13,21 +13,23 @@
 {% endblock %}
 
 {% block content %}
-<div id="project-page" class="content">
-    <h1 class="page-header">
-        {{ ez_content_name(content) }}
-    </h1>
+    <div class="site-content-header">
+        <header class="container">
+            <h1>{{ ez_content_name(content) }}</h1>
+        </header>
+    </div>
 
-    {% if not ez_is_field_empty(content, 'introduction') %}
-        {{ ez_render_field(content, 'introduction') }}
-    {% endif %}
+    <div id="project-page" class="container">
+        {% if not ez_is_field_empty(content, 'introduction') %}
+            {{ ez_render_field(content, 'introduction') }}
+        {% endif %}
 
-    {% if not ez_is_field_empty(content, 'description') %}
-        {{ ez_render_field(content, 'description') }}
-    {% endif %}
+        {% if not ez_is_field_empty(content, 'description') %}
+            {{ ez_render_field(content, 'description') }}
+        {% endif %}
 
-    {% if not ez_is_field_empty(content, 'technologies') %}
-        Technologie: {{ ez_render_field(content, 'technologies',  { "template": _self } ) }}
-    {% endif %}
-</div>
+        {% if not ez_is_field_empty(content, 'technologies') %}
+            Technologie: {{ ez_render_field(content, 'technologies',  { "template": _self } ) }}
+        {% endif %}
+    </div>
 {% endblock %}

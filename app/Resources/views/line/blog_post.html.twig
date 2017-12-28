@@ -1,10 +1,17 @@
-<article class="blog-post">
+<article>
     {% set url = path('ez_urlalias', {
         'locationId': content.contentInfo.mainLocationId
     }) %}
 
     <header>
-        <h3><a href="{{ url }}">{{ ez_content_name(content) }}</a></h3>
+        <h2><a href="{{ url }}">{{ ez_content_name(content) }}</a></h2>
+
+        <div class="blog-post-meta">
+            Opublikowano
+            <time datetime="{{ content.versionInfo.creationDate|date('c') }}">
+                {{ content.versionInfo.creationDate|date('d-m-Y') }}
+            </time>
+        </div>
     </header>
 
     {{ ez_render_field(content, 'intro') }}

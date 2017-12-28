@@ -1,10 +1,23 @@
-{% extends '::pagelayout.html.twig' %}
+{% extends ':blog:layout.html.twig' %}
 
-{% block content %}
-    <div id="article-page" class="content">
-        <article class="blog-post">
+{% block content_header %}
+    <div class="site-content-header">
+        <header class="container">
             <h1>{{ ez_content_name(content) }}</h1>
 
+            <div class="blog-post-meta">
+                Opublikowano
+                <time datetime="{{ content.versionInfo.creationDate|date('c') }}">
+                    {{ content.versionInfo.creationDate|date('d-m-Y') }}
+                </time>
+            </div>
+        </header>
+    </div>
+{% endblock %}
+
+{% block blog_content %}
+    <div class="content">
+        <article>
             <div class="lead">
                 {{ ez_render_field(content, 'intro') }}
             </div>

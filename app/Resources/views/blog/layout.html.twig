@@ -1,0 +1,29 @@
+{% extends '::pagelayout.html.twig' %}
+
+{% block content %}
+    {% block content_header %}{% endblock %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                {% block blog_content %}{% endblock %}
+            </div>
+
+            <div class="col-sm-4">
+                {% block blog_sidebar %}
+                    <section class="blog-widget blog-widget-search">
+                        {{ render(controller('AppBundle:BlogSearch:form')) }}
+                    </section>
+
+                    <section class="blog-widget blog-widget-categories">
+                        <header>
+                            <h5>Kategorie</h5>
+                        </header>
+
+                        {{ knp_menu_render('blog_categories') }}
+                    </section>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

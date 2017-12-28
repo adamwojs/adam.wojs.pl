@@ -1,10 +1,18 @@
-{% extends '::pagelayout.html.twig' %}
+{% extends ':blog:layout.html.twig' %}
 
-{% block content %}
-<div id="search-results" class="content">
-    <h1>Wyniki wyszukiwania</h1>
+{% block content_header %}
+    <div class="site-content-header">
+        <header class="container">
+            <h1>Wyniki wyszukiwania</h1>
+        </header>
+    </div>
+{% endblock %}
 
-    {% include ':blog:search_form.html.twig' with { form: form } %}
+{% block blog_content %}
+<div id="search-results">
+    <div class="mb-4">
+        {% include ':blog:search_form.html.twig' with { form: form } %}
+    </div>
 
     {% if results is not empty %}
         {% for hit in results %}
@@ -21,8 +29,10 @@
         {% endif %}
     {% else %}
         <div class="alert alert-info" role="alert">
-            <p>Brak wyników.</p>
+            Brak wyników wyszukiwania.
         </div>
     {% endif %}
 </div>
 {% endblock %}
+
+{% block blog_sidebar %}{% endblock %}

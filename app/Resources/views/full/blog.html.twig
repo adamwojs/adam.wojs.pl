@@ -1,13 +1,7 @@
-{% extends '::pagelayout.html.twig' %}
+{% extends ':blog:layout.html.twig' %}
 
-{% block content %}
-    <div id="blog-page" class="content">
-        <h1>{{ ez_content_name(content) }}</h1>
-
-        {{ knp_menu_render('blog_categories') }}
-
-        {{ render(controller('AppBundle:BlogSearch:form')) }}
-
+{% block blog_content %}
+    {% if posts is not empty %}
         {% for hit in posts %}
             {% set post = hit.valueObject %}
 
@@ -20,5 +14,9 @@
         {% if posts.haveToPaginate() %}
             {{ pagerfanta(posts) }}
         {% endif %}
-    </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Brak wpisów :(
+        </div>
+    {% endif %}
 {% endblock %}

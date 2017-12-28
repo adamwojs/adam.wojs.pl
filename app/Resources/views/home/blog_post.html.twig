@@ -1,0 +1,17 @@
+<div class="card">
+    {% set url = path('ez_urlalias', {
+        'locationId': content.contentInfo.mainLocationId
+    }) %}
+
+    {% if not ez_is_field_empty(content, 'image') %}
+        {{ ez_render_field(content, 'image', { parameters: { 'alias': 'blog_post', 'class': 'card-img-top' } }) }}
+    {% endif %}
+
+    <div class="card-body">
+        <h3 class="card-title"><a href="{{ url }}">{{ ez_content_name(content) }}</a></h3>
+
+        <div class="card-text">
+            {{ ez_render_field(content, 'intro') }}
+        </div>
+    </div>
+</div>

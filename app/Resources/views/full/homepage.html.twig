@@ -1,34 +1,30 @@
 {% extends '::pagelayout.html.twig' %}
 
+{% set blog_url = path('ez_urlalias', {
+    'locationId': blog_location_id
+}) %}
+
 {% block content %}
-    <div id="home-page" class="content">
+    <div id="home-page" class="container">
         <div class="jumbotron">
             {{ ez_render_field(content, 'introduction') }}
-
-            <div class="text-center">
-                <span class="btn-group btn-group-justified">
-                    <a href="#" class="btn btn-default btn-lg btn-default" role="button">
-                        <i class="glyphicon glyphicon-briefcase"></i>
-                        Portfolio
-                    </a>
-                    <a href="#" class="btn btn-default btn-lg btn-primary" role="button">
-                        <i class="glyphicon glyphicon-user"></i>
-                        Curriculum Vitae
-                    </a>
-                </span>
-            </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Ostatnio zrealizowany projekt
-            </div>
-            <div class="panel-body">
+        <section class="homepage-section">
+            <header>
+                <h3 class="mb-4">Ostatnio dodane posty</h3>
+            </header>
+
+            <div class="card-deck">
                 {{ render(controller('ez_content:viewAction', {
-                    'locationId': portfolio_location_id,
+                    'locationId': blog_location_id,
                     'viewType': 'home',
                 })) }}
             </div>
-        </div>
+
+            <p class="text-right mt-2">
+                <a href="{{ blog_url }}">Zobacz więcej &raquo;</a>
+            </p>
+        </section>
     </div>
 {% endblock %}

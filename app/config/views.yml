@@ -27,6 +27,7 @@ ezpublish:
                         template: '::full/homepage.html.twig'
                         params:
                             portfolio_location_id: '%app.portfolio.location_id%'
+                            blog_location_id: '%app.blog.location_id%'
                         match:
                             Identifier\ContentType: [homepage]
                     project:
@@ -46,11 +47,7 @@ ezpublish:
                         match:
                             Id\Location: '%app.portfolio.location_id%'
                 home:
-                    project:
-                        template: '::home/project.html.twig'
-                        match:
-                            Identifier\ContentType: [project]
-                    portfolio:
+                    blog:
                         controller: ez_query:ContentQueryAction
                         template: '::parts/content_list.html.twig'
                         params:
@@ -58,11 +55,18 @@ ezpublish:
                             query:
                                 query_type: LocationChildren
                                 parameters:
-                                    parent_location: '%app.portfolio.location_id%'
-                                    limit: 1
+                                    parent_location: "@=location.pathString"
+                                    content_type: article
+                                    limit: 3
                                 assign_results_to: content_items
                         match:
-                            Id\Location: '%app.portfolio.location_id%'
+                            Identifier\ContentType: [folder]
+                            \AppBundle\Matcher\AncestorLocation: '%app.blog.location_id%'
+                    blog_post:
+                        template: '::home/blog_post.html.twig'
+                        match:
+                            Identifier\ContentType: [article]
+                            \AppBundle\Matcher\AncestorLocation: '%app.blog.location_id%'
                 line:
                     project:
                         template: '::line/project.html.twig'

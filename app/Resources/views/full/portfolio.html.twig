@@ -1,49 +1,17 @@
 {% extends '::pagelayout.html.twig' %}
 
 {% block content %}
-    <div id="portfolio" class="content">
-        <h1>{{ ez_content_name(content) }}</h1>
+    <div id="portfolio" class="container">
+        <div class="card-columns">
+            {% for hit in projects %}
+                {% set project = hit.valueObject %}
 
-        <select class="filters form-control">
-            <option value="">Wszystkie</option>
-            <option value="app" selected>Aplikacje internetowe</option>
-            <option value="www">Strony WWW</option>
-            <option value="other">Pozostałe</option>
-        </select>
-
-        <nav class="filters">
-            <ul class="nav nav-tabs">
-                <li>
-                    <a href="javascript:void(0)" data-toggle="tab" data-tag="">
-                        Wszystkie
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="javascript:void(0)" data-toggle="tab" data-tag="app">
-                        Aplikacje internetowe
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" data-toggle="tab" data-tag="www">
-                        Strony WWW
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" data-toggle="tab" data-tag="other">
-                        Pozostałe
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        {% for hit in projects %}
-            {% set project = hit.valueObject %}
-
-            {{ render(controller('ez_content:viewAction', {
-                'locationId': project.contentInfo.mainLocationId,
-                'viewType': 'line',
-            })) }}
-        {% endfor %}
+                {{ render(controller('ez_content:viewAction', {
+                    'locationId': project.contentInfo.mainLocationId,
+                    'viewType': 'line',
+                })) }}
+            {% endfor %}
+        </div>
 
         {% if projects.haveToPaginate() %}
             {{ pagerfanta(projects) }}

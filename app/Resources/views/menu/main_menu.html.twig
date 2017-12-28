@@ -4,9 +4,9 @@
 
 {% block list %}
     {% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
-        <div{{ knp_menu.attributes(listAttributes) }} class="list-group">
+        <nav{{ knp_menu.attributes(listAttributes) }} class="nav">
             {{ block('children') }}
-        </div>
+        </nav>
     {% endif %}
 {% endblock %}
 
@@ -16,4 +16,4 @@
     {% endif %}
 {% endblock %}
 
-{% block linkElement %}<a class="list-group-item {% if matcher.isCurrent(item) %}active{% endif %}" href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}
+{% block linkElement %}<a class="nav-link {% if matcher.isCurrent(item) %}active{% endif %}" href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}

@@ -1,19 +1,20 @@
-<article class="project" data-tags="app">
-    <header class="project-header">
-        {% set url = path('ez_urlalias', {
-            'locationId': content.contentInfo.mainLocationId
-        }) %}
-
-        <h3><a href="{{ url }}">{{ ez_content_name(content) }}</a></h3>
-    </header>
-
-    {% if not ez_is_field_empty(content, 'introduction') %}
-        {{ ez_render_field(content, 'introduction') }}
-    {% endif %}
+<div class="card">
+    {% set url = path('ez_urlalias', {
+        'locationId': content.contentInfo.mainLocationId
+    }) %}
 
     {% if not ez_is_field_empty(content, 'main_image') %}
-    <div class="thumbnail">
-        {{ ez_render_field(content, 'main_image', { parameters: { 'alias': 'original' } }) }}
-    </div>
+        <div class="thumbnail">
+            {{ ez_render_field(content, 'main_image', { parameters: { 'alias': 'original', 'class': 'card-img-top' } }) }}
+        </div>
     {% endif %}
-</article>
+
+    <div class="card-body">
+        <h4 class="card-title"><a href="{{ url }}">{{ ez_content_name(content) }}</a></h4>
+        {% if not ez_is_field_empty(content, 'introduction') %}
+        <div class="card-text">
+            {{ ez_render_field(content, 'introduction') }}
+        </div>
+        {% endif %}
+    </div>
+</div>
