@@ -2,7 +2,6 @@
 
 namespace AppBundle\Menu;
 
-use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
@@ -23,38 +22,30 @@ class MainMenuBuilder
     private $factory;
 
     /**
-     * @var \eZ\Publish\API\Repository\LocationService
-     */
-    private $locationService;
-
-    /**
      * @var \eZ\Publish\Core\Repository\SearchService
      */
     private $searchService;
 
     /**
-     * @var int
+     * @var int[]
      */
-    private $rootLocationId;
+    private $locations;
 
     /**
      * MainMenuBuilder constructor.
      *
      * @param \Knp\Menu\FactoryInterface $factory
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
      * @param \eZ\Publish\API\Repository\SearchService $searchService
-     * @param int $rootLocationId
+     * @param array $locations
      */
     public function __construct(
         FactoryInterface $factory,
-        LocationService $locationService,
         SearchService $searchService,
-        int $rootLocationId)
+        array $locations)
     {
         $this->factory = $factory;
         $this->searchService = $searchService;
-        $this->locationService = $locationService;
-        $this->rootLocationId = $rootLocationId;
+        $this->locations = $locations;
         $this->logger = new NullLogger();
     }
 
@@ -63,10 +54,6 @@ class MainMenuBuilder
         $menu = $this->factory->createItem('root');
 
         try {
-            $menu->addChild($this->createLocationItem(
-                $this->locationService->loadLocation($this->rootLocationId)
-            ));
-
             $searchResults = $this->searchService->findLocations($this->getMainMenuQuery());
             foreach($searchResults->searchHits as $searchHit) {
                 $menu->addChild($this->createLocationItem($searchHit->valueObject));
@@ -83,7 +70,7 @@ class MainMenuBuilder
         $query = new LocationQuery();
         $query->filter = new Criterion\LogicalAnd([
             new Criterion\Visibility(Criterion\Visibility::VISIBLE),
-            new Criterion\ParentLocationId($this->rootLocationId)
+            new Criterion\LocationId($this->locations)
         ]);
         $query->sortClauses = [
             new SortClause\Location\Priority()

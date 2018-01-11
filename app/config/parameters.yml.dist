@@ -16,3 +16,4 @@ parameters:
     app.blog.page_limit: 10
     app.portfolio.location_id: 54
     app.portfolio.page_limit: 10
+    app.main_menu.locations: [2, 55, 54]
