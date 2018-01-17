@@ -156,7 +156,7 @@ services:
     AppBundle\Menu\MainMenuBuilder:
         public: true
         arguments:
-            $rootLocationId: '$content.tree_root.location_id$'
+            $locations: '%app.main_menu.locations%'
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
 
