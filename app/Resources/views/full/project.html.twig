@@ -28,6 +28,8 @@
             {{ ez_render_field(content, 'description') }}
         {% endif %}
 
+        {{ ez_render_field(content, 'gallery', { "template": ':fields:lightbox.html.twig' }) }}
+
         {% if not ez_is_field_empty(content, 'technologies') %}
             Technologie: {{ ez_render_field(content, 'technologies',  { "template": _self } ) }}
         {% endif %}

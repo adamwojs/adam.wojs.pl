@@ -82,7 +82,11 @@ ezpublish:
                         template: '::embed/codesnippet.html.twig'
                         match:
                             Identifier\ContentType: [code_snippet]
-
+                lightbox:
+                    code_snippet:
+                        template: '::lightbox/image.html.twig'
+                        match:
+                            Identifier\ContentType: [image]
         admin_group:
             content_view:
                 embed:

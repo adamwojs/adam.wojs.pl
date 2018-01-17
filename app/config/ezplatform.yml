@@ -53,6 +53,10 @@ ezpublish:
                     reference: original
                     filters:
                         - { name: geometry/scaleexact, params: [1024, 300] }
+                lightbox_thumbnail:
+                    reference: original
+                    filters:
+                        - { name: geometry/scale, params: [320, 280] }
             field_templates:
                 - { template: ':fields:codesnippet_view.html.twig' }
 

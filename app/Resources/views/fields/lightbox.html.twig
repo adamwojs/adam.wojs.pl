@@ -1,0 +1,33 @@
+{% block ezimage_field %}
+    {% spaceless %}
+        {% if not ez_is_field_empty( content, field ) %}
+            {% set original = ez_image_alias( field, versionInfo, parameters.original_alias|default('original')) %}
+            {% set thumbnail = ez_image_alias( field, versionInfo, parameters.thumbnail_alias|default('original')) %}
+
+            <a href="{{ original ? asset(original.uri) : 'javascript:void(0)' }}" data-lightbox="{{ parameters.lightbox|default('lightbox') }}" class="d-block mb-4 h-100">
+                {% set src = thumbnail ? asset( thumbnail.uri ) : "//:0" %}
+                {% set width = parameters.width is defined ? parameters.width : thumbnail.width %}
+                {% set height = parameters.height is defined ? parameters.height : thumbnail.height %}
+                <img src="{{ src }}"{% if width %} width="{{ width }}"{% endif %}{% if height %} height="{{ height }}"{% endif %} alt="{{ field.value.alternativeText }}" class="img-fluid img-thumbnail" />
+            </a>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block ezobjectrelationlist_field %}
+    {% spaceless %}
+        {% if not ez_is_field_empty( content, field ) %}
+            <div class="row">
+                {% for contentId in field.value.destinationContentIds %}
+                    <div class="col-lg-4 col-md-6">
+                    {{ render(controller("ez_content:viewAction", {
+                        'contentId': contentId,
+                        'viewType': 'lightbox',
+                        'lightbox': 'lightbox-%d-%d'|format(content.id, field.id)
+                    })) }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
